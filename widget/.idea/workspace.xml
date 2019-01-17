@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ChangeListManager">
     <list default="true" id="2c078db3-2d38-4dcd-bfed-2d68308dd9ac" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,6 +80,17 @@
       <pane id="Scope" />
     </panes>
   </component>
+=======
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="96" />
+    <option name="y" value="78" />
+    <option name="width" value="1610" />
+    <option name="height" value="975" />
+  </component>
+>>>>>>> 5f56d818035d7a454b756ce951229559cfdfd675
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -86,6 +98,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.php.tools.quality.phpcs.PhpCSConfigurable" />
   </component>
+<<<<<<< HEAD
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -155,4 +168,6 @@
       </provider>
     </entry>
   </component>
+=======
+>>>>>>> 5f56d818035d7a454b756ce951229559cfdfd675
 </project>

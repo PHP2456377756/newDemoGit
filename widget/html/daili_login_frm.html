@@ -238,7 +238,11 @@ api.toast({
         //请求数据库并存储用户信息
         var api_url = localStorage.getItem('api_url');
         api.ajax({
+<<<<<<< HEAD
             url: 'http://www.91lekan.com/login/login/veify',
+=======
+            url: 'http://ys.hnyprh.com/login/login/veify',
+>>>>>>> 5f56d818035d7a454b756ce951229559cfdfd675
             method: 'POST',
             data: {
                 values: {
@@ -286,14 +290,22 @@ api.toast({
 
               /*    api.openWin({
                     name: 'h5',
+<<<<<<< HEAD
                     url: 'http://www.91lekan.com/index/index/index',
+=======
+                    url: 'http://ys.hnyprh.com/index/index/index',
+>>>>>>> 5f56d818035d7a454b756ce951229559cfdfd675
                    });
 */
                    api.openWin({
                        name: 'video_win',
                        url: './video_win.html',
                        delay: 800,
+<<<<<<< HEAD
                        pageParam:{url:'http://www.91lekan.com/index/index/index'},
+=======
+                       pageParam:{url:'http://ys.hnyprh.com/index/index/index'},
+>>>>>>> 5f56d818035d7a454b756ce951229559cfdfd675
                        bgColor: 'rgba(0,0,0,0)'
                    });
 

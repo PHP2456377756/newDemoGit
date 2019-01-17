@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><widget id="A6082209537220" security="false" version="0.0.1">
+<<<<<<< HEAD
   <name>91乐看</name>
+=======
+  <name>逆袭影院</name>
+>>>>>>> 5f56d818035d7a454b756ce951229559cfdfd675
   <description>Example For APICloud.</description>
   <author email="developer@apicloud.com" href="http://www.apicloud.com">Developer</author>
   <content src="index.html"/>
