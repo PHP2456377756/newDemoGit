@@ -37,7 +37,7 @@
   <div class="myui-from">
     <ul class="myui-from-list">
       <li class="myui-from-list-item">
-        <input type="tel" minlength="11" maxlength="11" id="username" placeholder="请输入手机号或账号" class="myui-from-list-item-input" value ="">
+        <input type="tel" minlength="11" maxlength="11" id="username" placeholder="请输入手机号" class="myui-from-list-item-input" value ="">
       </li>
       <li class="myui-from-list-item">
         <input id="password" type="password" placeholder="请输入密码" class="myui-from-list-item-input" value ="">
@@ -65,22 +65,31 @@
       $api.fixStatusBar(header);
       var headerPos = $api.offset(header);
       var body_h = $api.offset($api.dom('body')).h;
+
+
       if (api.pageParam.user) {
         var username = $api.byId('username');
         var password = $api.byId('password');
         password.value = api.pageParam.pass;
         username.value = api.pageParam.user;
+
       }
+
+
     }
     function closeWin(){
         api.closeWin({
         });
     }
+
     // function toWin(name){
     //   api.closeToWin({
     //       name: name
     //   });
     // }
+
+
+
     function openWin(name){
           var delay = 0;
           if(api.systemType != 'ios'){
@@ -101,6 +110,8 @@
               vScrollBarEnabled:false
           });
       }
+
+
 
       function loginTo(){
         var username = $api.val($api.byId('username'));
@@ -131,7 +142,7 @@
         //请求数据库并存储用户信息
         var api_url = localStorage.getItem('api_url');
         api.ajax({
-            url: 'http://ys.hnyprh.com/login/login/veifys.html',
+            url: 'http://yingshi.hnyprh.com/login/login/veifys.html',
             method: 'get',
             data: {
                 values: {
@@ -152,30 +163,28 @@
                   localStorage.setItem('user_id',ret.msg['id']);
                   localStorage.setItem('user_name',username);
                   localStorage.setItem('password',password);
-									localStorage.setItem('user_nickname',ret.msg['nick_name']);
                   localStorage.setItem('user_time',ret.msg['time']);
-                  localStorage.setItem('user_jinb',ret.msg['share']);
+                  localStorage.setItem('user_share',ret.msg['share']);
                   localStorage.setItem('user_advert',ret.msg['advert']);
-                  // localStorage.setItem('user_code',ret.msg['code']);
-									localStorage.setItem('user_zfb',ret.msg['zfb']);
-                  localStorage.setItem('user_weixin',ret.msg['weichat']);
-									localStorage.setItem('tud',ret.msg['tudi']);
-                  localStorage.setItem('daili',ret.msg['power']);
-									localStorage.setItem('glqqkf',ret.msg['qqkfx']);
-									localStorage.setItem('glmobi',ret.msg['mobix']);
-									localStorage.setItem('stdejb',ret.msg['stjb']);
-									
-                  /* localStorage.setItem('url1',ret.msg['url1']);
+                  localStorage.setItem('user_code',ret.msg['code']);
+                  localStorage.setItem('user_weichat',ret.msg['weichat']);
+                  localStorage.setItem('url',ret.msg['url']);
+                  localStorage.setItem('url1',ret.msg['url1']);
                   localStorage.setItem('url2',ret.msg['url2']);
-                  localStorage.setItem('url4',ret.msg['url4']); */ 
+                  localStorage.setItem('url3',ret.msg['url3']);
+                  localStorage.setItem('url4',ret.msg['url4']);
                   api.sendEvent({
                     name: 'newLoingdata',
                     extra: {
                     }
                   });
+
+
                   api.hideProgress();
+
                   api.closeWin({
                   });
+
                   // api.openWin({
                   //     name: 'index',
                   //     url: '../index.html',
