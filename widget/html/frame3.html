@@ -1,0 +1,585 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" href="../css/demo.css">
+    <style type="text/css">
+        .text-white {
+            color: #ffffff !important;
+        }
+        .aui-grid [class*=aui-col-] {
+            padding: 0.75rem 0;
+        }
+        .iconfont{
+          font-size: 1.5rem
+        }
+				.yangs{
+					font-size:1rem;
+					color: #F5611A;
+				}
+.icon {
+   width: 1.4em; height: 1.4em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+	 margin-top: -0.1rem;
+}
+
+.black_overlay{
+         display: none; 
+         position: absolute;  
+         top: 0%;  
+         left: 0%;  
+         width: 100%;  
+         height: 100%;  
+         /* background-color: #000; */  
+         z-index:1001;  
+         -moz-opacity: 0.8;  
+         opacity:.80;  
+         filter: alpha(opacity=80);  
+    } 
+    .white_content {
+       display: none;  
+       position: absolute; 
+       top: 10%; 
+       left: 15%;             
+       z-index:1002; 
+       overflow: auto;
+       margin:0 auto;
+       line-height: 370px;
+       width: 300px;
+       height: 285px;
+       color:#FF4500;
+       background-image: url(../image/qdjinbi.png);
+       background-repeat: no-repeat; 
+       background-size: 100% 100%; 
+       -moz-background-size: 100% 100%;
+       text-align:center;
+			font-size: 22px;
+    }  
+    </style>
+</head>
+<body onload="getData()">
+    <!-- 顶部 -->
+    <section  id="user-info" class="myui-bg-info">
+		<div class="user-boxx2" tapmode onclick="tojinbi()">
+			<span id="jinb" class="yangs" tapmode onclick="tojinbi()"></span><br/>
+			<font size="3" color="#00A7F5">我的金币</font>
+		</div>
+       
+		<div class="user-boxx3" tapmode onclick="totudi()">
+			<span id="tud" class="yangs" tapmode onclick="totudi()"></span><br/>
+			<font size="3" color="#00A7F5">我的会员</font>
+		</div>	
+			
+			<div  class="user-box" id="user-box">
+				<span id="min"></span>
+				<div class="user-box-1" tapmode onclick="toLogin()">
+					<img src="../image/user_img.png">
+				</div>
+				
+				<div id="islogin"  style="font-size:1rem;color:#8e726f;" onclick="toLogin()">
+				</div>
+				
+				<div id="time"  style="font-size:0.7rem;color:#ff5722;" onclick="toLogin()">
+				</div>
+			</div>
+    </section>
+		
+   <div id="light_qq" class="white_content"> 
+   			
+   </div>
+   <div id="light_weixin" class="white_content">  
+   		
+   </div> 
+   <div id="fade" class="black_overlay"  onClick="closeWindow()">
+   </div> 
+	 
+	 <div id="hhh" class="csshhh">
+	 <div class="user-boxxhh2" >
+	 	<input id="qiandaon" type="image" src="../image/qiandao.png" width="40px" height="40px" tapmode onclick="qiandao()"><br/>
+	 	<font size="3" color="#00A7F5">每日签到</font>
+	 </div>
+	 
+	 <div class="user-boxxhh3" id="adddl" tapmode onclick="daili()">
+	 	<input type="image" src="../image/daili.png" width="40px" height="42px" onclick="daili()"><br/>
+	 	<font size="3" color="#00A7F5">加入代理</font>
+	 </div>	
+	 	
+		<div class="user-boxxhh3" id="lookdl" tapmode onclick="dailishow()">
+		<input type="image" src="../image/dailisy.png" width="40px" height="42px" onclick="dailishow()"><br/>
+		<font size="3" color="#00A7F5">代理收益</font>
+		</div>	
+		
+	 	<div  class="user-boxhh" id="user-box">
+	 		<input type="image" src="../image/renwu.png" width="40px" height="40px" onclick="renwu()"><br/>
+	 		<font size="3" color="#00A7F5">个人中心</font>
+	 	</div>
+		
+		<!-- 	////// -->
+		
+		<div class="user-boxxhh2"  >
+		<input id="caiwumx" type="image" src="../image/caiwu.png" width="40px" height="40px" tapmode onclick="caiwu()"><br/>
+		<font size="3" color="#00A7F5">收支明细</font>
+		</div>
+
+		<div class="user-boxxhh3" id="makemn" tapmode onclick="mkmoney()">
+		<input type="image" src="../image/zqian.png" width="40px" height="42px" ><br/>
+		<font size="3" color="#00A7F5">如何赚钱</font>
+		</div>	
+		
+		<div  class="user-boxhh" id="user-boxad" tapmode onclick="adhz()">
+			<input type="image" src="../image/adhz.png" width="40px" height="40px" ><br/>
+			<font size="3" color="#00A7F5">广告合作</font>
+		</div>
+		
+	</div>
+	
+    <section class="aui-grid aui-margin-b-15">
+        <div class="aui-row">
+            <div class="aui-col-xs-4" onclick="openWin('open_vip_win')">
+                
+                <div class="aui-grid-labelx">
+									<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-huiyuanjulebu"></use>
+									</svg>&nbsp;&nbsp;充值VIP<span class="aui-grid-labelxx">〉</span>
+									</div>
+            </div>
+						<div class="aui-col-xs-4" onclick="openWin('qianbao_win')">
+								
+								<div class="aui-grid-labelx">
+									<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-qianbao"></use>
+									</svg>&nbsp;&nbsp;我的钱包<span class="aui-grid-labelxx">〉</span></div>
+						</div>
+            <div class="aui-col-xs-4" onclick="openWin('jifen_win')">
+                
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon--jinbi"></use>
+									</svg>&nbsp;&nbsp;金币兑换<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+            <div class="aui-col-xs-4" onclick="openWin('share_win')">
+                
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-yaoqing"></use>
+									</svg>&nbsp;&nbsp;邀请好友<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+						
+            <div class="aui-col-xs-4" onclick="openWin('back_pwd')">
+                
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-modify-password"></use>
+									</svg>&nbsp;&nbsp;修改密码<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+						
+            <div class="aui-col-xs-4">
+            <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-ccsaliyunkefu"></use>
+	</svg>&nbsp;&nbsp;<a href="mqqwpa://im/chat?chat_type=wpa&uin=342344418&version=1&src_type=web&web_src=oicqzone.com">联系客服</a><span class="aui-grid-labelxx">〉</span></a></div>
+            </div>
+						
+		           <!-- <a href="http://wpa.qq.com/msgrd?v=3&uin=8888888&site=在线客服&menu=yes">联系客服</a>
+           					<div class="aui-col-xs-4" onclick="openWin('qqun')">
+           					<div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+           								<use xlink:href="#icon-ccsaliyunkefu"></use>
+           </svg>&nbsp;<a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=7330071870&card_type=group&source=qrcode">加入QQ群</a><span class="aui-grid-labelxx">〉</span></div>
+           					</div> -->
+
+            <div class="aui-col-xs-4" onclick="openWin('shezhi_win')">
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-shezhi"></use>
+									</svg>&nbsp;&nbsp;账户设置<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+        </div>
+    </section>
+    <div class="br">
+
+    </div>
+    <div id="vsion" class="user-bt" onclick="alert('免责声明:本站所有视频均来自互联网，版权归原创者所有，如果侵犯了您的权益，请通知我们，我们将会在3个正常工作日内删除其侵权内容，谢谢合作。')">
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script src="../fonts/iconfont.js"></script>
+<script src="../js/hui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script> 
+<script type="text/javascript">
+    var api_url = localStorage.getItem('api_url');
+    apiready = function () {
+      api.parseTapmode();
+      var appVersion = api.appVersion;
+      var vsion = $api.byId('vsion');
+      vsion.innerHTML = '91乐看 v'+appVersion+' <span style="color:#7bbfea">免责声明</span>';
+      //监听重新获取客服联系方式广播
+      api.addEventListener({
+          name: 'newLoingdata'
+      }, function(ret, err) {
+        if (ret) {
+					
+           getData();
+					 
+        }
+      });
+       
+    }
+
+    function openWin(name){
+      if (localStorage.getItem('user_id')<1) {
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+        });
+        return;
+      }else {
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+      }
+    }
+    //获取数据
+    function getData(){
+      var user_id = localStorage.getItem('user_id');
+      var user_name = localStorage.getItem('user_name');
+      var user_time = localStorage.getItem('user_time');
+			var nickname = localStorage.getItem('user_nickname');
+			var jinbz  =  localStorage.getItem('user_jinb');
+			var tudz = localStorage.getItem('tud');
+			var dailix = localStorage.getItem('daili');
+			var dailiy ='';
+      var s1 = formatDateTime(user_time);
+      var timestamp = Date.parse(new Date())/1000;
+      var time = $api.byId('time');
+      var islogin = $api.byId('islogin');
+			var min = $api.byId('min');
+			var jinbxs = $api.byId('jinb');
+			var tudixs = $api.byId('tud');
+			if (dailix==1){
+				dailiy="代理 ";
+				hui('#lookdl').show();
+				hui('#adddl').hide();
+			}else{
+				dailiy='';
+				hui('#lookdl').hide();
+				hui('#adddl').show();
+			}
+			
+      if (user_time>timestamp) {
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP '+s1+' 到期';
+      }
+      if (user_time<timestamp) {
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP已到期 请及时续费';
+      }
+      if(user_time == "-1") {
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> 永久贵宾VIP';
+      }
+      if (localStorage.getItem('user_id')<1) {
+        time.innerHTML = '91乐看';
+      }else if (localStorage.getItem('user_id')>1 && localStorage.getItem('user_nickname')!==""){
+      			min.innerHTML = dailiy+nickname;
+						jinbxs.innerHTML = jinbz;
+						tudixs.innerHTML = tudz;
+						islogin.innerHTML = "";
+						
+      	}else{
+      	min.innerHTML = dailiy+'UID: '+user_id;
+      	jinbxs.innerHTML = jinbz;
+      	tudixs.innerHTML = tudz;
+				
+      }
+
+      if (user_id>0) {
+        api.ajax({
+            url: api_url+'/login/login/sign.html',
+            method: 'get',
+            data: {
+                values: {
+                    uid: user_id
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+      
+                shareid.innerHTML = ret.msg['jinbi']+'<small> 分</small>';
+            } else {
+                alert('网络错误777');
+            }
+        });
+      
+        if (user_time>timestamp) {
+          invip.innerHTML = '<i class="iconfont icon-VIP" style="font-size:0.8rem;color:#fff940;"></i>VIP会员';
+          stime.innerHTML = time+'<small> 天</small>';
+        }else if (user_time == -1) {
+          invip.innerHTML = '<i class="iconfont icon-VIP" style="font-size:0.8rem;color:#fff940;"></i>永久VIP';
+          stime.innerHTML = '<small> 一万年</small>';
+        }else if (user_time<timestamp) {
+          stime.innerHTML = '<small> 已到期</small>';
+        }else if (time == 0) {
+          stime.innerHTML = '<small>体验卡</small>';
+        }
+      }else {
+        islogin.style.display = "none";
+        no_login.style.display = "block";
+        invip.style.display = "none";
+        otbtn.style.display = "none";
+        indata.style.display = "none";
+        api.hideProgress();
+      
+      }
+    }
+
+    function formatDateTime(timeStamp) {
+        var date = new Date();
+        date.setTime(timeStamp * 1000);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '-' + m + '-' + d;
+    };
+
+
+    function toLogin(){
+      if (localStorage.getItem('user_id')>0) {
+          api.openWin({
+              name: 'open_vip_win',
+              url: './open_vip_win.html',
+              delay: 300,
+          });
+      }else {
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            delay: 300,
+        });
+      }
+    }
+		function totudi(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'tudi_win',
+							url: './tudi_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+  function tojinbi(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'jifen_win',
+							url: './jifen_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+		
+function renwu(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'shezi',
+							url: './shezhi_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+
+function daili(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'daili_win',
+							url: './daili_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+		
+		function dailishow(){
+					if (localStorage.getItem('user_id')>0) {
+							api.openWin({
+									name: 'dailishow_win',
+									url: './dailishow_win.html',
+									delay: 300,
+							});
+					}else {
+						api.openWin({
+								name: 'login',
+								url: './login.html',
+								delay: 300,
+						});
+					}
+				}
+				
+		function caiwu(){
+					if (localStorage.getItem('user_id')>0) {
+							api.openWin({
+									name: 'caiwulog_win',
+									url: './caiwulog_win.html',
+									delay: 300,
+							});
+					}else {
+						api.openWin({
+								name: 'login',
+								url: './login.html',
+								delay: 300,
+						});
+					}
+				}
+				
+				function adhz(){
+							if (localStorage.getItem('user_id')>0) {
+									api.openWin({
+											name: 'adhz_win',
+											url: 'danye/adhz_win.html',
+											delay: 300,
+									});
+							}else {
+								api.openWin({
+										name: 'login',
+										url: './login.html',
+										delay: 300,
+								});
+							}
+						}
+					
+			function mkmoney(){
+						if (localStorage.getItem('user_id')>0) {
+								api.openWin({
+										name: 'makemn_win',
+										url: 'danye/makemn_win.html',
+										delay: 300,
+								});
+						}else {
+							api.openWin({
+									name: 'login',
+									url: './login.html',
+									delay: 300,
+							});
+						}
+					}		
+						
+		function qiandao(){ 
+			if (localStorage.getItem('user_id')>0) {
+				   var qdfbxx = Math.floor(Math.random()*30+5);
+				// light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
+						 api.ajax({
+						 	url: 'http://ys.hnyprh.com/login/login/qiand.html',
+						 	method: 'get',
+						 	data: {
+						 			values: {
+						 					uid: localStorage.getItem('user_id'),
+						 				qdjbx: qdfbxx
+						 			}
+						 	}
+						 },function(ret, err){
+						 	if (ret) {
+						 		if (ret.code == 1) {
+									light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
+									var light_qqx = document.querySelector('#light_qq');
+									var fadex = document.querySelector('#fade');
+									var jinbdom = document.querySelector('#jinb');
+									var jinbsz = Number(jinbdom.innerText);
+						 			var qiandd = document.querySelector('#qiandaon');
+									    light_qqx.style.display="block";
+											fadex.style.display="block";
+						 			    qiandd.disabled="disabled";
+											jinbdom.innerHTML=jinbsz+qdfbxx;
+						 			    setTimeout("closeWindow()","3000");
+						 }else if (ret.code == 0) {
+						 			api.hideProgress();
+									alert('您今天已经签到过了！^-^');
+						 			}
+						 		}
+						 });
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+		   }
+		 }
+		
+	 function closeWindow(){
+		         document.getElementById('light_weixin').style.display='none';
+		        document.getElementById('light_qq').style.display='none';
+		         document.getElementById('fade').style.display='none';
+		    }
+		
+    function toVip(){
+      if (user_id>0) {
+        api.openWin({
+            name: 'open_vip_win',
+            url: './open_vip_win.html',
+            delay: 300,
+        });
+
+      }else {
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            delay: 300,
+        });
+
+      }
+
+    }
+
+    //退出登录
+    function exitLogin(){
+      api.showProgress({
+          title: '稍后...',
+          text: '正在退出...',
+          modal: false
+      });
+      localStorage.setItem('user_id','');
+      localStorage.setItem('user_name','');
+      localStorage.setItem('user_time','');
+      localStorage.clear();
+    }
+</script>
+</html>

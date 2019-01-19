@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no"> 
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <style type="text/css">
+        p {
+            margin-bottom: 0.5rem;
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color:    #eaeaea;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color:    #eaeaea;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color:    #eaeaea;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color:    #eaeaea;
+        }
+    </style> 
+</head>
+<body class="login-bg2">
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background-color:rgba(0,0,0,0) !important">
+      <a class="aui-btn aui-pull-left"  onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </a> 
+      <div id="title" class="aui-title">修改密码</div>
+  </header>
+
+
+  <div class="myui-from">
+    <ul class="myui-from-list">
+			<label id="tishi" style="display:none"></label>
+     <!-- <li class="myui-from-list-item">
+        <div class="myui-code">
+          <input id="username" type="tel" minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-code-input">
+         <button id="btn1" type="button" name="button" style="width:20%;float:left;height: 2.2rem;" class="myui-from-code-button" onclick="getCode()">获取</button> 
+        </div> 
+							</li> -->
+      <!-- <li class="myui-from-list-item">
+        <input id="yzcode" type="tel" minlength="6" maxlength="6" placeholder="请输入验证码" class="myui-from-list-item-input">
+      </li> -->
+      <li class="myui-from-list-item">
+        <input id="password" type="password" placeholder="请输入新密码" class="myui-from-list-item-input">
+      </li>
+      <li class="myui-from-list-item">
+        <button id="btn2" type="button" name="button" class="myui-from-list-item-button" onclick="toReg()">修改密码</button>
+      </li>
+    </ul>
+  </div>
+
+</body>
+ <script type="text/javascript" src="../script/api.js" ></script> 
+<script type="text/javascript">
+
+    function toReg(){
+            var ajax = new XMLHttpRequest();
+            ajax.open('post','http://ys.hnyprh.com/appx/pswrd.php');
+            ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            var user_id = localStorage.getItem('user_id');
+						var paswrd = document.querySelector('#password').value;
+      		  // var paswrd = Number(paswrd);
+      		if (user_id==""){
+      			alert('请先登入')
+      			return;
+      		}
+      				var userid = Number(user_id);
+      				var student = new Object(); 
+      				student.id = userid; 
+							student.age = paswrd;
+      				var json = JSON.stringify(student); 
+      				ajax.send('json='+json);
+
+            ajax.onreadystatechange = function(){
+              if (ajax.readyState ==4&&ajax.status==200) {
+                  
+                  console.log(ajax.responseText);
+                  var show = document.querySelector('#tishi');
+                      show.style.display='block';
+      								// show.innerHTML=ajax.responseText; 
+                  if (ajax.responseText=="exist") {
+                      show.innerHTML='!'
+                  } else{
+      					    alert('修改成功！新密码是'+ajax.responseText+'请牢记！')
+                   }
+              }
+            };
+          }
+			function closeWin(){
+				api.closeWin({
+				});
+			}
+</script>
+</html>
