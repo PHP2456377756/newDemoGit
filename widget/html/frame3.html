@@ -74,7 +74,7 @@
        
 		<div class="user-boxx3" tapmode onclick="totudi()">
 			<span id="tud" class="yangs" tapmode onclick="totudi()"></span><br/>
-			<font size="3" color="#00A7F5">我的会员</font>
+			<font size="3" color="#00A7F5">我的徒弟</font>
 		</div>	
 			
 			<div  class="user-box" id="user-box">
@@ -118,7 +118,7 @@
 		
 	 	<div  class="user-boxhh" id="user-box">
 	 		<input type="image" src="../image/renwu.png" width="40px" height="40px" onclick="renwu()"><br/>
-	 		<font size="3" color="#00A7F5">个人中心</font>
+	 		<font size="3" color="#00A7F5">任务中心</font>
 	 	</div>
 		
 		<!-- 	////// -->
@@ -193,7 +193,7 @@
             <div class="aui-col-xs-4" onclick="openWin('shezhi_win')">
                 <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
 									<use xlink:href="#icon-shezhi"></use>
-									</svg>&nbsp;&nbsp;账户设置<span class="aui-grid-labelxx">〉</span></div>
+									</svg>&nbsp;&nbsp;设置<span class="aui-grid-labelxx">〉</span></div>
             </div>
         </div>
     </section>
@@ -220,9 +220,8 @@
           name: 'newLoingdata'
       }, function(ret, err) {
         if (ret) {
-					
            getData();
-					 
+          // location.reload();
         }
       });
        
@@ -316,7 +315,7 @@
       
                 shareid.innerHTML = ret.msg['jinbi']+'<small> 分</small>';
             } else {
-                alert('网络错误777');
+                alert('网络错误');
             }
         });
       
@@ -504,8 +503,8 @@ function daili(){
 						
 		function qiandao(){ 
 			if (localStorage.getItem('user_id')>0) {
-				   var qdfbxx = Math.floor(Math.random()*30+5);
-				// light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
+				var qdfbxx = Math.floor(Math.random()*30+5);
+				light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
 						 api.ajax({
 						 	url: 'http://ys.hnyprh.com/login/login/qiand.html',
 						 	method: 'get',
@@ -518,6 +517,7 @@ function daili(){
 						 },function(ret, err){
 						 	if (ret) {
 						 		if (ret.code == 1) {
+									var qdfbxx = Math.floor(Math.random()*30+5);
 									light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
 									var light_qqx = document.querySelector('#light_qq');
 									var fadex = document.querySelector('#fade');

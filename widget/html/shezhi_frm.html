@@ -53,7 +53,7 @@
 						</div>
 				</li>
 
-				<!-- <li class="aui-list-item">
+				<li class="aui-list-item">
 						<div class="aui-list-item-label-icon">
 								<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
 						</div>
@@ -75,32 +75,7 @@
 								<input type="button"  class="button white" tapmode onclick="verify()" value="提交验证码"/>
 								<div id="vsionqx" class="aui-list-item-right"></div>
 						</div>
-				</li> -->
-				
-				
-				
-				<li class="aui-list-item">
-						<div class="aui-list-item-label-icon">
-								<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
-						</div>
-						<div class="aui-list-item-inner">
-								<div class="aui-list-item-titlex">推荐人</div>
-								<label id="tjryqmxs" style="display:none;width: 165px;"></label>
-								<input type="number" id="tjryqmtxt"  style=" width: 175px;border: 1px solid #ccc;margin-right:15px;height: 35px;" placeholder=" 填写推荐人邀请码" />
-								<input type="button"  id="tjryqmbtn" class="button white" tapmode onclick="tjyqm()" value="提交邀请码"/>
-								<div id="vsionqx" class="aui-list-item-right"></div>
-						</div>
 				</li>
-
-        <li class="aui-list-item">
-        		<div class="aui-list-item-label-icon">
-        				<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
-        		</div>
-        		<div class="aui-list-item-inner aui-list-item-arrow">
-        				<div class="aui-list-item-titley" id="woyqma">我的邀请码:</div>
-        				<div  class="aui-list-item-right"></div> 
-        		</div>
-        </li>
 
           <li class="aui-list-item">
               <div class="aui-list-item-label-icon">
@@ -130,22 +105,20 @@
 <script type="text/javascript" src="../script/api.js" ></script>
 <script type="text/javascript">
   var api_url = localStorage.getItem('api_url');
-	var wodeyqm = localStorage.getItem('user_sharema');
-	
+	var smsVerify = null;
     apiready = function(){
-		
+			smsVerify = api.require('smsVerify');
+			// 初始化
+			register();
     var appVersion = api.appVersion;
     var vsion = $api.byId('vsion');
-		var woyqmax = $api.byId('woyqma');
     vsion.innerHTML = 'V'+appVersion;
-		woyqmax.innerHTML = '我的邀请码:  '+'<font color=red size=4>'+wodeyqm+'</font>';
     api.parseTapmode();
     //计算缓存
     getCache();
     var nic = localStorage.getItem('user_nickname');
 		var zfbzz = localStorage.getItem('user_zfb');
 		var weixinzz = localStorage.getItem('user_weixin');
-		var tjryqmax= localStorage.getItem('tjryqma');
 		if (nic!==""){
 			hui('#nictxt').show();	
 			nictxt.innerHTML = nic;
@@ -172,18 +145,6 @@
 		} else{
 			hui('#weixintxt').hide();	
 			hui('#weixin').show();
-		}
-		
-		if (tjryqmax==000001){
-			hui('#tjryqmxs').hide();	
-			hui('#tjryqmtxt').show();
-			hui('#tjryqmbtn').show();
-		} else{
-			hui('#tjryqmxs').show();	
-			tjryqmxs.innerHTML = tjryqmax;
-			hui('#tjryqmtxt').hide();
-			hui('#tjryqmbtn').hide();
-			
 		}
   }
 // !zfbzz && typeof(zfbzz)!="undefined" && zfbzz!=0
@@ -266,14 +227,15 @@
 					hui('#nictxt').show();
 					nictxt.innerHTML = nicknamex;
 	 				localStorage.setItem('nicxgcs', '1');
-					localStorage.setItem('user_nickname', nicknamex);		
+					localStorage.setItem('user_nickname', nicknamex);
+					
 	 	}else if (ret.code == 0) {
 	 			  api.hideProgress();
 	 				alert('修改失败');
 	 		    }
 	 	else {
 	 			api.hideProgress();
-	 			alert('网络错误！2001');
+	 			alert('网络错误！11');
 	 		  }
 			 }
 		});
@@ -328,7 +290,7 @@
 					}
 		else {
 				api.hideProgress();
-				alert('网络错误！2002');
+				alert('网络错误！11');
 				}
 				}
 		});
@@ -381,46 +343,7 @@
 					}
 		else {
 				api.hideProgress();
-				alert('网络错误！2003');
-				}
-				}
-		});
-	
-	}
-	
-	function tjyqm(){
-		var tjryqmty = $api.val($api.byId('tjryqmtxt'));
-		if(tjryqmty == ''){
-		api.alert({
-				title: '亲爱的!~',
-				msg: '邀请码不能为空哦',
-		});
-		return;
-		}
-		api.ajax({
-			url: 'http://ys.hnyprh.com/login/login/tjryqmcz.html',
-			method: 'get',
-			data: {
-					values: {
-							uid: localStorage.getItem('user_id'),
-							tjryqmshuj: tjryqmty
-					}
-			}
-		},function(ret, err){
-			if (ret) {
-				if (ret.code == 1) {
-					hui('#tjryqmxs').show();	
-					hui('#tjryqmtxt').hide();
-					hui('#tjryqmbtn').hide();
-					tjryqmxs.innerHTML = tjryqmty;
-						
-		}else if (ret.code == 0) {
-					api.hideProgress();
-					alert('修改失败');
-					}
-		else {
-				api.hideProgress();
-				alert('网络错误！2004');
+				alert('网络错误！11');
 				}
 				}
 		});

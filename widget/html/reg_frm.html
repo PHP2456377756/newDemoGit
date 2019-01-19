@@ -225,16 +225,13 @@
                           localStorage.setItem('password',password);
 													localStorage.setItem('user_nickname',ret.msg['nick_name']);
                           localStorage.setItem('user_time',ret.msg['time']);
-                          localStorage.setItem('user_sharema',ret.msg['sharema']);
-//                           localStorage.setItem('user_advert',ret.msg['advert']);
-//                           localStorage.setItem('user_code',ret.msg['code']);
-                         localStorage.setItem('glqqkf',ret.msg['qqkfx']);
+                          localStorage.setItem('user_share',ret.msg['share']);
+                          localStorage.setItem('user_advert',ret.msg['advert']);
+                          localStorage.setItem('user_code',ret.msg['code']);
                          localStorage.setItem('user_jinb',ret.msg['share']);
                          localStorage.setItem('user_zfb',ret.msg['zfb']);
                          localStorage.setItem('user_weixin',ret.msg['weichat']);
                          localStorage.setItem('tud',ret.msg['tudi']);
-												 localStorage.setItem('stdejb',ret.msg['stjb']);
-												 localStorage.setItem('tjryqma',ret.msg['sjyqma']);
                           api.sendEvent({
                             name: 'newLoingdata',
                             extra: {
@@ -249,7 +246,7 @@
                       }
                     } else {
                       api.hideProgress();
-                      alert('网络错误3000！');
+                      alert('网络错误！');
                       //alert( JSON.stringify( err ) );
                       return;
                     }
@@ -262,7 +259,7 @@
             api.hideProgress();
             api.alert({
                 title: '糟糕~',
-                msg: '网络错误2000！',
+                msg: '网络错误！',
             });
           }
       });
@@ -293,7 +290,7 @@
           rnd+=Math.floor(Math.random()*10);
       return rnd;
     } */
-/* $('#mpanel4').slideVerify({
+$('#mpanel4').slideVerify({
 		type : 2,		//类型
 		vOffset : 5,	//误差量，根据需求自行调整
 		vSpace : 5,	//间隔
@@ -319,7 +316,7 @@
 		error : function() {
 		        	alert('验证失败！');
 		}
-	}); */
+	});
 	
 
     function closeWin(){

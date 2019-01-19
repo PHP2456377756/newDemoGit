@@ -55,7 +55,6 @@
 
 </body>
  <script type="text/javascript" src="../script/api.js" ></script> 
- <script type="text/javascript" src="../script/jquery-qrcode.min.js" ></script>
 <script type="text/javascript">
     var user_id = localStorage.getItem('user_id');
     var api_url = localStorage.getItem('api_url');
@@ -64,7 +63,7 @@
       api.parseTapmode();
       // newLoingdata();
 			weichat.innerHTML='有问题请联系客服QQ:'+glqq;
-      /* var clipBoard = api.require('clipBoard');
+      var clipBoard = api.require('clipBoard');
       clipBoard.get(function(ret, err) {
           if (ret) {
 
@@ -80,32 +79,55 @@
           } else {
 
           }
-      }); */
-     
-		 api.ajax({
-		 		url: 'http://ys.hnyprh.com/login/login2/jiage.html',
-		 		method: 'get',
-		 		data: {
-		 				values: {
-		 						uid: localStorage.getItem('user_id')
-		 				}
-		 		}
-		 },function(ret, err){
-		 		if (ret) {
-						localStorage.setItem('kajgx1',ret.msg['yuejg']);
-						localStorage.setItem('kajgx2',ret.msg['jidujg']);
-						localStorage.setItem('kajgx3',ret.msg['nianjg']);
-						localStorage.setItem('kajgx4',ret.msg['yongjiujg']);
-		 				
-		 		} else {
-		 		
-		 				
-		 		}
-		 });
+      });
 
-  }
 
-   /* function openUrl1(){
+    }
+
+    /* function newLoingdata(){
+      api.ajax({
+          url: 'http://ys.hnyprh.com/login/login/veifys.html',
+          method: 'get',
+          data: {
+              values: {
+                  username: localStorage.getItem('user_name'),
+                  passwd: localStorage.getItem('password'),
+                  imei:api.deviceId
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+            if (ret.code == 0) {
+              alert('出错了，请尝试重新登录');
+              return;
+            }else if (ret.code == 1) {
+                localStorage.setItem('user_id',ret.msg['id']);
+                localStorage.setItem('user_time',ret.msg['time']);
+                localStorage.setItem('user_share',ret.msg['share']);
+                localStorage.setItem('user_advert',ret.msg['advert']);
+              /*localStorage.setItem('user_code',ret.msg['code']);
+                localStorage.setItem('user_weichat',ret.msg['weichat']);
+                localStorage.setItem('url',ret.msg['url']);
+                localStorage.setItem('url1',ret.msg['url1']);
+                localStorage.setItem('url2',ret.msg['url2']);
+                localStorage.setItem('url3',ret.msg['url3']);
+                localStorage.setItem('url4',ret.msg['url4']); 
+                var weichatdiv = $api.byId('weichat');
+                api.sendEvent({
+                  name: 'newLoingdata',
+                  extra: {
+                  }
+                });
+            }
+          } else {
+            alert('网络错误！');
+            return;
+          }
+      });
+    } */
+
+
+    function openUrl1(){
       api.openWin({
       		name: 'url30',
       		url: './url30.html',
@@ -132,66 +154,10 @@
       		url: './url1000.html',
       		delay: 300,
       });
-    } */
-	     
-	     
-	     
-	    
-	 function openUrl1(){
-	    
-	          if (localStorage.getItem('url1') == '无数据') {
-	            keFu();
-	            return;
-	          }else if (localStorage.getItem('url1') == '') {
-	            keFu();
-	            return;
-	          }else {
-							var kajaz1 = localStorage.getItem('kajgx1');
-	            toBanner("http://ys.hnyprh.com/pay/?name=1yue&fee="+kajaz1+"&cha="+user_id);
-	          }
-	        }
-	    		
-	        function openUrl2(){
-	          if (localStorage.getItem('url2') == '无数据') {
-	            keFu();
-	            return;
-	          }else if (localStorage.getItem('url2') == '') {
-	            keFu();
-	            return;
-	          }else {
-							var kajaz2 = localStorage.getItem('kajgx2');
-	            toBanner("http://ys.hnyprh.com/pay/?name=3yue&fee="+kajaz2+"&cha="+user_id);
-	          }
-	        }
-	    		
-	        function openUrl3(){
-	          if (localStorage.getItem('url3') == '无数据') {
-	            keFu();
-	            return;
-	          }else if (localStorage.getItem('url3') == '') {
-	            keFu();
-	            return;
-	          }else {
-							var kajaz3 = localStorage.getItem('kajgx3');
-	            toBanner("http://ys.hnyprh.com/pay/?name=1nian&fee="+kajaz3+"&cha="+user_id);
-	          }
-	        }
-	    		
-	        function openUrl4(){
-	          if (localStorage.getItem('url4') == '无数据') {
-	            keFu();
-	            return;
-	          }else if (localStorage.getItem('url14') == '') {
-	            keFu();
-	            return;
-	          }else {
-							var kajaz4 = localStorage.getItem('kajgx4');
-	            toBanner("http://ys.hnyprh.com/pay/?name=yongjiu&fee="+kajaz4+"&cha="+user_id);
-	          }
-	        }
-	
+    }
+		//......
 		
-	/* function sjmp() {
+	function sjmp() {
 			var now = new Date();
 			var year = now.getFullYear(); 
 			var month = now.getMonth();
@@ -202,9 +168,9 @@
 			var time = "";
 			time = year + "-" + month + "-" + date;
 		  return time;
-		}		 */
+		}		
 //提交
- /* function tjbh(){
+ function tjbh(){
  		 		var jiaoybh = document.querySelector('#jiaoyh').value;
 						var bsanhx = localStorage.getItem('bsanh');
 						var beatit = localStorage.getItem('beatit');
@@ -296,11 +262,8 @@
 												 localStorage.setItem("bsanh",'1');
 												 alert("恭喜您获得vip卡密,已复制可直接粘贴"+ajax.responseText);
 												 
- } */
- 
- 
+ }
     //访问地址
-		
     function toBanner(url){
       var sys = api.systemType;
       if (sys == 'ios') {
