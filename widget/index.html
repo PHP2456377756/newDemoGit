@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" type="text/css" href="./css/iconfont.css">
+		
     <style>
         header{ background-color: #ffffff; }
         header ul li { height: 2.25rem; line-height: 2.25rem; text-align: center; display: none; color: #333; position: relative;font-size: 0.9rem;  }
@@ -30,10 +31,13 @@
         }
     </style>
     <script type="text/javascript">
-      localStorage.setItem('api_url',"http://yingshi.hnyprh.com");
+      localStorage.setItem('api_url',"http://www.sucaihuo.com");
     </script>
 </head>
 <body>
+	
+	
+	
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
@@ -45,18 +49,27 @@
     </header>
     <div id="main" class="flex-con">
 
+
+
+
     </div>
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >首页</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >直播</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="btnwz">直播</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >福利社</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
         </ul>
     </div>
 </div>
+
+
+
+
+
 </body>
 </html>
+<script src="js/hui.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript">
     var api_url = localStorage.getItem('api_url');
@@ -73,7 +86,7 @@
         }else {
           uid = 0;
         }
-        api.ajax({
+        /* api.ajax({
             url: api_url+'/login/login/tongji.html',
             method: 'get',
             data: {
@@ -91,7 +104,7 @@
                 //alert( JSON.stringify( err ) );
                 alert('似乎没有网络！请尝试重启APP');
             }
-        });
+        }); */
 
         funIniGroup();
 
@@ -218,4 +231,6 @@
             index: index
         });
     }
+		
+	
 </script>

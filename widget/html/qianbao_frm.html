@@ -8,6 +8,20 @@
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<style type="text/css">
+		td
+		{
+			width: 25%;
+		white-space: nowrap;
+		overflow:hidden;
+		text-align: -webkit-center;
+		height: 15px;
+		}
+		.tablex{
+			width: 100%;
+		}
+		
+		</style>
 </head>
 <body>
   <div class="myui-jifen-box">
@@ -33,10 +47,12 @@
     </div>
     <div class="myui-jifen-bt">
       <div class="my-jien-btn aui-btn aui-btn-info aui-btn-block aui-btn-sm" tapmode onclick="fasong()">我要提现</div>
-    </div>
-
+    </div><br/>
+     <div class="aui-btn aui-btn-danger" tapmode onclick="totxjl()">查看提现记录</div>
   </div>
-
+<div id="neir">
+	   
+	</div>
 
 </body>
 <script type="text/javascript" src="../script/api.js" ></script>
@@ -102,13 +118,18 @@
 			 var bianyu = Number(bianl3);
 			 var bianx = Number(bianl1.innerText);
 			 if (zfbxx==""){
-			 alert('请在我的-设置里面填写支付宝账号!')
+			 alert('请在我的-账号设置里面填写支付宝账号!')
 			 return;
 			 }
-			 if (bianx<=48){
+			 if (bianx<50){
 			 	alert('满50元可提现，余额不足!')
 			 	return;
 		   }
+			 
+			 if (bianl3<0){
+			 alert('抱歉！余额不足，已超过提现额度!');
+			 return;
+			 }
 			 	 var shuji=Number(bianl2);
 			 	  
 					var userid = localStorage.getItem('user_id');
@@ -132,37 +153,7 @@
 			 	};
     }
 
-  //重新获取到期时间
-  function getTime(){
-    api.ajax({
-        url: 'http://ys.hnyprh.com/login/login/veifys.html',
-        method: 'get',
-        data: {
-            values: {
-                username: localStorage.getItem('user_name'),
-                passwd: localStorage.getItem('password'),
-                imei:api.deviceId
-            }
-        }
-    },function(ret, err){
-        if (ret) {
-          if (ret.code == 0) {
-            api.hideProgress();
-            alert('不明错误 请重新登录');
-          }else if (ret.code == 1) {
-              localStorage.setItem('user_time',ret.msg['time']);
-              api.sendEvent({
-                name: 'newLoingdata',
-                extra: {
-                }
-              });
-          }
-        } else {
-          api.hideProgress();
-          alert('网络错误！33');
-        }
-    });
-  }
+  
 
 
   var bar = document.querySelectorAll(".aui-bar-btn");
@@ -192,9 +183,25 @@
         }
     }
 
+  function totxjl(){
+  	if (localStorage.getItem('user_id')>0) {
+  			api.openWin({
+  					name: 'txjl_win',
+  					url: 'danye/txjl_win.html',
+  					delay: 300,
+  			});
+  	}else {
+  		api.openWin({
+  				name: 'login',
+  				url: './login.html',
+  				delay: 300,
+  		});
+  	}
+  }
 
 
-   function openWin(name){
+
+    function openWin(name){
         var delay = 0;
         if(api.systemType != 'ios'){
             delay = 300;

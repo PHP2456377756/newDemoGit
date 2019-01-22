@@ -176,19 +176,34 @@ function qdsz(){
 																	
 																		show.innerHTML='<font size=5 color=red>'+'未成功付款!'+'<br/>'+'开通失败!'+'</font>';
 																		localStorage.setItem("qidong",'0');
-																		alert("未成功付款,开通失败!");
+																		
 																} else{
-																		show.innerHTML= '<font size=6 color=green>'+'支付成功!'+'</font>'+'<br/>'+'<font size=4 color=red>'+ajax.responseText+'</font>';
+																		show.innerHTML= '<font size=6 color=green>'+'支付成功!'+'</font>'+'<br/>'+'<font size=4 color=red>'+ajax.responseText+'</font>'+'<br/>'+'请重新登入!';
 																		localStorage.setItem("qidong",'0');
-																	alert(ajax.responseText);	
+																	alert(ajax.responseText+'<br/>'+'请重新登入!');	
+																	setTimeout("exitLogin()","500");		
 																}	
 														 }
 													};
 													 
 	 }
- /* function closeWin(){
+  function closeWin(){
       api.closeWin({
       });
-  } */
+  } 
+	function exitLogin(){
+		    api.sendEvent({
+		      name: 'newLoingdata',
+		      extra: {
+		      }
+		    });
+		    localStorage.setItem('user_id','');
+		    localStorage.setItem('user_name','');
+		    localStorage.setItem('user_time','');
+				localStorage.clear();
+				api.closeToWin({
+	        name: 'root'
+	});
+	}
 </script>
 </html>

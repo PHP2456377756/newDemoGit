@@ -17,11 +17,11 @@
           关闭
       </a>
       <div id="title" class="aui-title">91乐看</div>
-      <a id="play" class="aui-btn aui-pull-right" style="color:#ff5722 !important;font-weight:bold" tapmode onclick="huanxian()">
+      <!-- <a id="play" class="aui-btn aui-pull-right" style="color:#ff5722 !important;font-weight:bold" tapmode onclick="huanxian()">
           播放
-      </a>
-      <a id="play" class="aui-btn aui-pull-right" tapmode onclick="jieXi()">
-          换线
+      </a> -->
+      <a id="play" class="aui-btn aui-pull-right" style="color:fuchsia; !important;font-weight:bold" tapmode onclick="jieXi()">
+          免VIP换线播放
       </a>
 
   </header>
@@ -52,7 +52,7 @@
       //支付宝口令复制
       var clipBoard = api.require('clipBoard');
       clipBoard.set({
-          value: 'FRd81Z66zm'
+          value: 'mCQc3P00kQ'
       }, function(ret, err) {
 
       });
@@ -96,10 +96,6 @@
                       msg: '请重新登陆',
                   });
                   return;
-
-
-
-
 
                 }
             } else {
@@ -212,16 +208,42 @@
              var bturl = dataurl2.split(":");
              var feurl = bturl[1];
 
-
-
              if (feurl.slice(0,18) == '//www.iqiyi.com/v_'||feurl.slice(0,19) == '//v.qq.com/x/cover/'||feurl.slice(0,17) == '//m.tv.sohu.com/v'||feurl.slice(0,23) == '//m.film.sohu.com/album'||feurl.slice(0,14) == '//m.mgtv.com/b'||feurl.slice(0,21) == '//www.youku.com/video'||feurl.slice(0,22) == '//www.le.com/ptv/vplay'||feurl.slice(0,30) == '//www.wasu.cn/wap/play/show/id'||feurl.slice(0,30) == '//www.wasu.cn/wap/Play/show/id'||feurl.slice(0,17) == '//m.pptv.com/show'||feurl.slice(0,60) == '//m.miguvideo.com/wap/resource/migu/miguH5/detail/detail.jsp') {
 
                if (!onoff) {
                  return;
                }
 
-               
 
+
+               /* var dialogBox = api.require('dialogBox');
+               dialogBox.discount({
+               rect: {
+                  w: 300,
+                  h: 400
+                    },
+               styles: {
+                    bg: '#FFF',
+                 image: {
+            path: 'widget://image/tiss.png',
+            marginB: 50
+                  },
+          cancel: {
+            icon: 'widget://image/cancel_btn.png',
+            w: 50,
+            h: 50,
+						marginB: 50
+                  }
+               }
+                }, function(ret) {
+    
+              if (ret.eventType == 'cancel') {
+        dialogBox.close({
+            dialogName: 'discount'
+                 });
+             }
+                   });
+ */
 
 
              }else {
@@ -263,7 +285,72 @@
       //     pageParam:{id:api.pageParam.id}
       // });
 
-    
+      var dialogBox = api.require('dialogBox');
+      dialogBox.taskPlan({
+          rect: {
+              w: 300,
+              h: 350
+          },
+          texts: {
+              mainTitle: 'VIP登陆成功',
+              subTitle: '您可以先选择视频后在播放页面点击APP右上角的播放按钮即可免费观看，如果播放失败请尝试切换线路或反馈',
+              content: [{
+                  text: '步骤1.选择观看的视频后进入播放页面'
+              }, {
+                  text: '步骤2.在点击APP右上角【播放】按钮'
+              }],
+              btnTitle: 'OK'
+          },
+          styles: {
+              bg: '#fff',
+              corner: 5,
+              main: {
+                  marginT: 10,
+                  color: '#ff7600',
+                  size: 16,
+                  bold: true,
+              },
+              sub: {
+                  marginT: 8,
+                  color: '#999999',
+                  size: 16,
+              },
+              content: [{
+                  bg: '#ffd249',
+                  marginT: 10,
+                  w: 280,
+                  h: 30,
+                  align: 'center',
+                  color: '#be690d',
+                  size: 14
+              }, {
+                  bg: '#be690d',
+                  marginT: 10,
+                  w: 280,
+                  h: 30,
+                  align: 'center',
+                  color: '#ffd249',
+                  size: 14
+              }],
+              ok: {
+                  marginB: 10,
+                  marginL: 20,
+                  w: 280,
+                  h: 40,
+                  bg: '#fff',
+                  color: '#007FFF',
+                  size: 15
+              }
+          }
+      }, function(ret) {
+          //alert(JSON.stringify(ret));
+          if (ret.eventType == 'ok') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'taskPlan'
+              });
+          }
+      });
 
 
 
@@ -278,10 +365,91 @@
       return obj;
     }
 
- function closeWd(){
-      api.closeWin({
+    function closeWin(){
+      api.setScreenOrientation({
+          orientation: 'portrait_up'
       });
-  }
+      var browser = api.require('webBrowser');
+      browser.historyBack(
+        function(ret, err) {
+            if (!ret.status) {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.raffle({
+                  texts: {
+                      subText: '播放是否异常？',
+                      leftTitle: '是[反馈]',
+                      rightTitle: '否[退出]'
+                  },
+                  styles: {
+                      bg: '#fff',
+                      w: 300,
+                      icon: {
+                          marginT: 0,
+                          w: 300,
+                          h: 150,
+                          iconPath: 'widget://image/exitback.jpg'
+                      },
+                      main: {
+                          marginT: 0,
+                          color: '#636363',
+                          size: 13
+                      },
+                      sub: {
+                          marginT: 0,
+                          color: '#999999',
+                          size: 14
+                      },
+                      left: {
+                          marginB: 7,
+                          marginL: 18,
+                          w: 130,
+                          h: 35,
+                          corner: 2,
+                          bg: '#fff',
+                          color: '#007FFF',
+                          size: 15
+                      },
+                      right: {
+                          marginB: 7,
+                          marginL: 18,
+                          w: 130,
+                          h: 35,
+                          corner: 2,
+                          bg: '#fff',
+                          color: '#007FFF',
+                          size: 15
+                      }
+                  }
+              }, function(ret, err) {
+                  if (ret.eventType == 'left') {
+                      var dialogBox = api.require('dialogBox');
+                      dialogBox.close({
+                          dialogName: 'raffle'
+                      });
+                      api.toast({
+                          msg: '反馈提交成功！我们会尽快修复',
+                          duration: 3000,
+                          location: 'middle'
+                      });
+
+                  }else if (ret.eventType == 'right'){
+                    var dialogBox = api.require('dialogBox');
+                    dialogBox.close({
+                        dialogName: 'raffle'
+                    });
+                    api.clearCache(function() {
+
+                    });
+
+                    api.closeWin();
+                  }
+              });
+                //api.closeWin();
+
+            }
+        }
+      );
+    }
 
     function jieXi(){
       api.actionSheet({
@@ -402,6 +570,80 @@
 
         return dataurl2.match(new RegExp('[?&]' + name + '=([^?&]+)', 'i')) ? decodeURIComponent(RegExp.$1) : '';
 
+    }
+
+    function closeWd(){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.raffle({
+          texts: {
+              subText: '播放是否异常？',
+              leftTitle: '是[反馈]',
+              rightTitle: '否[退出]'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              icon: {
+                  marginT: 0,
+                  w: 300,
+                  h: 150,
+                  iconPath: 'widget://image/exitback.jpg'
+              },
+              main: {
+                  marginT: 0,
+                  color: '#636363',
+                  size: 13
+              },
+              sub: {
+                  marginT: 0,
+                  color: '#999999',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 18,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#fff',
+                  color: '#007FFF',
+                  size: 15
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 18,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#fff',
+                  color: '#007FFF',
+                  size: 15
+              }
+          }
+      }, function(ret, err) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'raffle'
+              });
+              api.toast({
+                  msg: '反馈提交成功！我们会尽快修复',
+                  duration: 3000,
+                  location: 'middle'
+              });
+
+          }else if (ret.eventType == 'right'){
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'raffle'
+            });
+            api.clearCache(function() {
+
+            });
+
+            api.closeWin();
+          }
+      });
     }
 
 
